@@ -85,7 +85,6 @@ bool process_events(struct platform_t* platform)
 }
 
 void update_screen(struct platform_t* platform, const uint32_t gfxbuffer[GFX_WIDTH * GFX_HEIGHT]) {
-
     SDL_UpdateTexture(platform->texture, NULL, gfxbuffer, GFX_WIDTH * sizeof(uint32_t));
     SDL_RenderTexture(platform->renderer, platform->texture, NULL, NULL);
     SDL_RenderPresent(platform->renderer);

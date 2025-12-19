@@ -24,6 +24,7 @@ int main()
         chip8_emulate_cycle(&chip8);
         if (chip8.draw_flag) {
             update_screen(platform, chip8.gfxbuffer);
+            chip8.draw_flag = false;
         }
         SDL_Delay(100);
     }
