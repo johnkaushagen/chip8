@@ -3,7 +3,6 @@ project(Chip8 VERSION 0.0.1
               DESCRIPTION "Chip8 interpreter"
               LANGUAGES C)
 
-find_package(check REQUIRED)
 find_package(SDL3 REQUIRED)
 
 add_executable(chip8 src/main.c
