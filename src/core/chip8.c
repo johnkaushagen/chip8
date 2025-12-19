@@ -28,6 +28,9 @@ void chip8_initialize(struct chip8_t* chip8) {
     memset(chip8, 0, sizeof(*chip8));
     chip8->pc = PC_START;
     memcpy(chip8->memory + font_offset, &chip8_fontset, sizeof(chip8_fontset));
+    for (int i = 0; i < GFX_WIDTH * GFX_HEIGHT; i++) {
+        chip8->gfxbuffer[i] = 0x000000FF;  // RGBA: opaque black
+    }
 }
 
 bool chip8_load_rom(struct chip8_t* chip8, const char* filename) {

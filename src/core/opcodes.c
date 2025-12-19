@@ -4,7 +4,10 @@
 #include <string.h>
 
 void op_0x00E0_clear_screen(struct chip8_t* chip8) {
-    memset(chip8->gfxbuffer, 0, sizeof(chip8->gfxbuffer));
+    for (int i = 0; i < GFX_WIDTH * GFX_HEIGHT; i++) {
+        chip8->gfxbuffer[i] = 0x000000FF;  // RGBA: opaque black
+    }
+    chip8->draw_flag = true;
 }
 
 void op_0x1NNN_jump(struct chip8_t* chip8, uint16_t address) {
@@ -30,7 +33,7 @@ void op_0xANNN_set_index(struct chip8_t* chip8, uint16_t nnn) {
 }
 
 void op_0xDXYN_draw(struct chip8_t* chip8, uint8_t x, uint8_t y, uint8_t n) {
-    uint32_t on  = 0xFFFFFFFF;
+    uint32_t on  = 0xFFFFFF00; // RGBA: transparent white. Keep alpha = 0 so XOR works correctly
 
     chip8->V[0xF] = 0;
 
